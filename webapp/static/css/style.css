@@ -1,0 +1,20 @@
+nav {
+    background-color: #039be5 !important;
+}
+
+.nav-wrapper p {
+    font-size: 25px;
+    margin: 0 0 0 25px;
+}
+
+.card-content {
+    font-size: 25px;
+    color: #1f77b4;
+    font-weight: bold;
+}
+
+@media only screen and (min-width: 993px) {
+    .container {
+        width: 80% !important;
+    }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+{% block head %}
+    <head lang="en">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css" media="screen,projection"/>
+        <!-- custom stylesheet -->
+        <link type="text/css" rel="stylesheet" href="static/css/style.css"/>
+    </head>
+{% endblock %}
+<body>
+<nav>
+    <div class="nav-wrapper">
+        <p class="brand-logo">Hypersurfaces code challenge</p>
+        <ul class="right hide-on-med-and-down" id="nav-mobile">
+            <li><a href="https://www.linkedin.com/in/ignazio-ingenito" target="_blank">Ignazio Ingenito</a></li>
+        </ul>
+    </div>
+</nav>
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {% if dataset %}
+                {% for data in dataset %}
+                    <div class="col s12 m6">
+                        <div class="card">
+                            {% if data["html"].startswith('data:image/png;base64')  %}
+                                <div class="card-image">
+                                    <img class="responsive-img" src="{{data['html']}}" alt="{{data['html']}}">
+                                </div>
+                                {% if data["has_peaks"] == True %}
+                                    <div class="card-content">{{data["file"]}}</div>
+                                {% else %}
+                                    <div class="card-content">{{data["file"]}} - <span class="red-text">Peaks missing</span></div>
+                                {% endif %}
+                            {% else %}
+                                <div class="card-image"></div>
+                                <div class="card-content red-text">
+                                    {{data["file"]}} - {{data['html']}}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col s12 m6">No file available</div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+</body>
+<script type="text/javascript" src="static/js/materialize.min.js"></script>
+</html>
